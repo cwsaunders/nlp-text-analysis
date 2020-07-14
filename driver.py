@@ -1,4 +1,5 @@
 import string
+from collections import Counter
 
 # NLP Sentiment/Text Analysis
 
@@ -16,10 +17,18 @@ for word in tokenized_words:
     if word not in stop_words:
         final_words.append(word)
 
-print(final_words)
+# print(final_words)
 
+emotion_list = []
 with open('emotions.txt', 'r') as emotions:
     for line in emotions:
         line = line.replace('\n','').replace(',', '').replace("'",'').strip()
         word, emotion = line.split(':')
-        print("Word :",word,"Emotion :",emotion)
+        # print("Word :",word,"Emotion :",emotion)
+
+        if word in final_words:
+            emotion_list.append(emotion)
+print(emotion_list)
+
+emotion_counter = Counter(emotion_list)
+print(emotion_counter)
