@@ -1,5 +1,6 @@
 import string
 from collections import Counter
+import matplotlib.pyplot as plt
 
 # NLP Sentiment/Text Analysis
 
@@ -28,7 +29,11 @@ with open('emotions.txt', 'r') as emotions:
 
         if word in final_words:
             emotion_list.append(emotion)
-print(emotion_list)
+# print(emotion_list)
 
 emotion_counter = Counter(emotion_list)
-print(emotion_counter)
+# print(emotion_counter)
+
+plt.bar(emotion_counter.keys(),emotion_counter.values())
+plt.savefig('graph.png')
+plt.show()
