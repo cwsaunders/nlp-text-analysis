@@ -34,6 +34,7 @@ with open('emotions.txt', 'r') as emotions:
 emotion_counter = Counter(emotion_list)
 # print(emotion_counter)
 
+
 fig, ax1 = plt.subplots()
 ax1.bar(emotion_counter.keys(),emotion_counter.values())
 fig.autofmt_xdate()
