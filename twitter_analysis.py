@@ -10,7 +10,7 @@ def get_old_tweets():
     tweetCriteria = got.manager.TweetCriteria().setQuerySearch('europe refugees')\
     .setSince("2015-05-01")\
     .setUntil("2015-09-30")\
-    .setMaxTweets(15)
+    .setMaxTweets(1000)
 
     # Storing list of objects into tweets variable
     tweets = got.manager.TweetManager.getTweets(tweetCriteria)
@@ -18,8 +18,17 @@ def get_old_tweets():
     text_tweets = [[tweet.text] for tweet in tweets]
     return text_tweets
 
-# Create text variable and clean itp
-text = open('read.txt', encoding='utf-8').read().lower().translate(str.maketrans('','',string.punctuation))
+text = ""
+text_tweets = get_old_tweets()
+length = len(text_tweets)
+
+for i in range(0,length):
+    text = text_tweets[i][0] + " " + text
+
+
+
+# Clean text
+text.lower().translate(str.maketrans('','',string.punctuation))
 
 tokenized_words = text.split()
 
