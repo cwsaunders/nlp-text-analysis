@@ -3,6 +3,7 @@ from collections import Counter
 import matplotlib.pyplot as plt
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 # NLP Sentiment/Text Analysis
 
@@ -33,6 +34,19 @@ with open('emotions.txt', 'r') as emotions:
 
 emotion_counter = Counter(emotion_list)
 # print(emotion_counter)
+
+def sentiment_analyze(sentiment_text):
+    score = SentimentIntensityAnalyzer().polarity_scores(sentiment_text)
+    neg = score['neg']
+    pos = score['pos']
+    if neg > pos:
+        print('Negetive sentiment')
+    if pos > neg:
+        print('Positive sentiment')
+    else:
+        print('Neutral sentiment')
+    
+sentiment_analyze(text)
 
 
 fig, ax1 = plt.subplots()
